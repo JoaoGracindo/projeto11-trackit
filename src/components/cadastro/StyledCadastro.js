@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Conteiner = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -65,4 +65,4 @@ const Container = styled.div`
   }
 `;
 
-export default Container;
+export default Conteiner;
