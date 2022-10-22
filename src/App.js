@@ -5,14 +5,12 @@ import Cadastro from "./components/cadastro/Cadastro";
 import Hoje from "./components/hoje/Hoje";
 import Habitos from "./components/habitos/Habitos";
 import Historico from "./components/historico/Historico";
-import Menu from "./components/menu/Menu";
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <BrowserRouter>
-      <Menu/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
