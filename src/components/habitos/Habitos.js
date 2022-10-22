@@ -8,30 +8,46 @@ export default function Habitos({}) {
       <StyledHabitos>
         <div className="header">
           <span>Meus Habitos</span>
-          <div>+</div>
+          <div data-identifier="create-habit-btn">+</div>
         </div>
 
         <div className="meusHabitos">
           <div className="novoHabito">
-            <input placeholder="nome do hábito"></input>
+            <input
+              data-identifier="input-habit-name"
+              placeholder="nome do hábito"
+            ></input>
             <div className="dias">
-              <div>D</div>
-              <div>S</div>
-              <div>T</div>
-              <div>Q</div>
-              <div>Q</div>
-              <div>S</div>
-              <div>S</div>
+              <div data-identifier="week-day-btn">D</div>
+              <div data-identifier="week-day-btn">S</div>
+              <div data-identifier="week-day-btn">T</div>
+              <div data-identifier="week-day-btn">Q</div>
+              <div data-identifier="week-day-btn">Q</div>
+              <div data-identifier="week-day-btn">S</div>
+              <div data-identifier="week-day-btn">S</div>
             </div>
             <div className="buttonContainer">
-              <button className="cancelar">Cancelar</button>
-              <button className="salvar">Salvar</button>
+              <button
+                data-identifier="cancel-habit-create-btn"
+                className="cancelar"
+              >
+                Cancelar
+              </button>
+              <button
+                data-identifier="save-habit-create-btn"
+                className="salvar"
+              >
+                Salvar
+              </button>
             </div>
+          </div>
+
+          <div data-identifier="no-habit-message" className="aviso">
+            Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
+            começar a trackear!
           </div>
         </div>
       </StyledHabitos>
     </>
   );
 }
-
-

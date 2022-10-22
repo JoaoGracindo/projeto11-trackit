@@ -11,6 +11,7 @@ export default function Cadastro({}) {
       <img src={`${img1}`} />
       <form>
         <input
+          data-identifier="input-email"
           placeholder="email"
           onChange={handleForm}
           type="email"
@@ -18,6 +19,7 @@ export default function Cadastro({}) {
           name="email"
         />
         <input
+          data-identifier="input-password"
           placeholder="Senha"
           onChange={handleForm}
           type="password"
@@ -25,16 +27,24 @@ export default function Cadastro({}) {
           name="password"
         />
         <input
+          data-identifier="input-name"
           placeholder="Nome"
           onChange={handleForm}
           type="name"
           required
           name="name"
         />
-        <input placeholder="Foto" onChange={handleForm} required />
+        <input
+          data-identifier="input-photo"
+          placeholder="Foto"
+          onChange={handleForm}
+          required
+        />
         <button type="submit">Cadastrar</button>
       </form>
-      <Link to="/cadastro">Já tem uma conta? Faça login!</Link>
+      <Link data-identifier="back-to-login-action" to="/cadastro">
+        Já tem uma conta? Faça login!
+      </Link>
     </StyledCadastro>
   );
 }

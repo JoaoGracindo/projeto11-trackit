@@ -1,5 +1,4 @@
 import logo from "./../../assets/logo.svg";
-import styled from "styled-components";
 import StyledMenu from "./StyledMenu";
 
 export default function Menu({}) {
@@ -8,17 +7,16 @@ export default function Menu({}) {
       <div className="header">
         <img className="logo" src={`${logo}`} />
         <img
+          data-identifier="avatar"
           className="userImg"
           src="https://www.rbsdirect.com.br/imagesrc/25516126.jpg?w=700"
         />
       </div>
       <div className="footer">
-        <span>Hábitos</span>
+        <span data-identifier="habit-page-action">Hábitos</span>
         <div>Hoje</div>
-        <span>Histórico</span>
+        <span data-identifier="historic-page-action">Histórico</span>
       </div>
     </StyledMenu>
   );
 }
-
-

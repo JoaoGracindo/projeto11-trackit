@@ -10,13 +10,12 @@ export default function Login({}) {
     password: "",
   });
   function fazerLogin() {
-    axios.post(
-      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
-      form
-    )
-    .then(
-        (e) => console.log("sucess",e.token)
-    );
+    axios
+      .post(
+        "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
+        form
+      )
+      .then((e) => console.log("sucess", e.token));
   }
   function handleForm(e) {
     setForm({
@@ -29,6 +28,7 @@ export default function Login({}) {
       <img src={`${img1}`} />
       <form onSubmit={fazerLogin}>
         <input
+          data-identifier="input-email"
           placeholder="email"
           onChange={handleForm}
           type="email"
@@ -36,15 +36,18 @@ export default function Login({}) {
           name="email"
         />
         <input
+          data-identifier="input-password"
           placeholder="senha"
           onChange={handleForm}
           type="password"
           required
           name="password"
         />
-        <button type="submit">Entrar</button>
+        <button data-identifier="login-btn" type="submit">
+          Entrar
+        </button>
       </form>
-      <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+      <Link data-identifier="sign-up-action" to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
     </StyledLogin>
   );
 }

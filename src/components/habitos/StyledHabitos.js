@@ -106,6 +106,16 @@ const StyledHabitos = styled.div`
       color: #ffffff;
     }
   }
+
+  .aviso{
+    margin: 30px auto 0 auto;
+    width:90%;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+    color: #666666;
+
+  }
 `;
 
 export default StyledHabitos;
