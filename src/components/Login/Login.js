@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import img1 from "../../assets/img1.svg";
 import StyledLogin from "./StyledLogin";
 
 export default function Login({}) {
+
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
-    password: "",
+    password: ""
   });
   function fazerLogin(e) {
     e.preventDefault();
@@ -16,13 +18,17 @@ export default function Login({}) {
         "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
         form
       )
-      .then((e) => console.log("sucess", e.token));
+      .then((e) => {
+        console.log("sucess", e.token);
+        navigate("/habitos")
+      });
   }
   function handleForm(e) {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
+    console.log(form)
   }
   return (
     <StyledLogin>

@@ -38,6 +38,8 @@ export default function Cadastro({}) {
       ...form,
       [e.target.name]: e.target.value,
     });
+
+    console.log(form)
   }
   return (
     <StyledCadastro desabilitado={desabilitado}>
@@ -80,6 +82,7 @@ export default function Cadastro({}) {
           placeholder="Foto"
           onChange={handleForm}
           required
+          name="image"
         />
         <button disabled={desabilitado} type="submit">
           {desabilitado ? <Carregando /> : "Cadastrar"}
