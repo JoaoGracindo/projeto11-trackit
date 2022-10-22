@@ -63,6 +63,14 @@ const Conteiner = styled.div`
     margin: 0 auto;
     color: #52b6ff;
   }
+
+  .desabilitado{
+
+    background-color: #F2F2F2;
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+  }
+
 `;
 
 export default Conteiner;

@@ -9,7 +9,8 @@ export default function Login({}) {
     email: "",
     password: "",
   });
-  function fazerLogin() {
+  function fazerLogin(e) {
+    e.preventDefault();
     axios
       .post(
         "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",

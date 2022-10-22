@@ -3,15 +3,50 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import img1 from "./../../assets/img1.svg";
 import StyledCadastro from "./StyledCadastro";
+import { useNavigate } from "react-router-dom";
+import Carregando from "../carregando/Carregando";
 
 export default function Cadastro({}) {
-  function handleForm() {}
+  const [desabilitado, setDesabilitado] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    name: "",
+    image: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+  function fazerCadastro(e) {
+    e.preventDefault();
+    setDesabilitado(true);
+    axios
+      .post(
+        "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",
+        form
+      )
+
+      .catch(() => {
+        setDesabilitado(false);
+      })
+      .then(() => {
+
+        navigate("/habitos")
+      });
+  }
+  function handleForm(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  }
   return (
-    <StyledCadastro>
+    <StyledCadastro desabilitado={desabilitado}>
       <img src={`${img1}`} />
-      <form>
+      <form onSubmit={fazerCadastro}>
         <input
           data-identifier="input-email"
+          disabled={desabilitado}
+          className={desabilitado ? "desabilitado" : ""}
           placeholder="email"
           onChange={handleForm}
           type="email"
@@ -20,6 +55,8 @@ export default function Cadastro({}) {
         />
         <input
           data-identifier="input-password"
+          disabled={desabilitado}
+          className={desabilitado ? "desabilitado" : ""}
           placeholder="Senha"
           onChange={handleForm}
           type="password"
@@ -28,6 +65,8 @@ export default function Cadastro({}) {
         />
         <input
           data-identifier="input-name"
+          disabled={desabilitado}
+          className={desabilitado ? "desabilitado" : ""}
           placeholder="Nome"
           onChange={handleForm}
           type="name"
@@ -36,13 +75,17 @@ export default function Cadastro({}) {
         />
         <input
           data-identifier="input-photo"
+          disabled={desabilitado}
+          className={desabilitado ? "desabilitado" : ""}
           placeholder="Foto"
           onChange={handleForm}
           required
         />
-        <button type="submit">Cadastrar</button>
+        <button disabled={desabilitado} type="submit">
+          {desabilitado ? <Carregando /> : "Cadastrar"}
+        </button>
       </form>
-      <Link data-identifier="back-to-login-action" to="/cadastro">
+      <Link data-identifier="back-to-login-action" to="/">
         Já tem uma conta? Faça login!
       </Link>
     </StyledCadastro>
