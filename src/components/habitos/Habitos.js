@@ -1,7 +1,24 @@
 import Menu from "./../menu/Menu";
 import StyledHabitos from "./StyledHabitos";
+import { AuthContext } from "../../contexts/auth";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Habitos({}) {
+
+
+
+  const navigate = useNavigate()
+  const {user} = useContext(AuthContext);
+  if (user.token === undefined) {
+    navigate("/");
+  }
+
+
+
+
+
+
   return (
     <>
       <Menu />

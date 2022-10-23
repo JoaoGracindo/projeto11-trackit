@@ -1,26 +1,40 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import img1 from "../../assets/img1.svg";
 import StyledLogin from "./StyledLogin";
+import Carregando from "../carregando/Carregando";
+import {AuthContext} from "./../../contexts/auth"
 
 export default function Login({}) {
 
+
+  const [desabilitado, setDesabilitado] = useState(false);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
-    password: ""
+    password: "",
   });
+const {setUser, user} = useContext(AuthContext)
+
+
+
+
   function fazerLogin(e) {
     e.preventDefault();
+    setDesabilitado(true);
     axios
       .post(
         "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
         form
       )
       .then((e) => {
-        console.log("sucess", e.token);
-        navigate("/habitos")
+        setUser(e.data)
+        navigate("/habitos");
+      })
+      .catch((e) => {
+        setDesabilitado(false);
+        alert(e.message);
       });
   }
   function handleForm(e) {
@@ -28,14 +42,15 @@ export default function Login({}) {
       ...form,
       [e.target.name]: e.target.value,
     });
-    console.log(form)
   }
   return (
-    <StyledLogin>
+    <StyledLogin desabilitado={desabilitado}>
       <img src={`${img1}`} />
       <form onSubmit={fazerLogin}>
         <input
           data-identifier="input-email"
+          disabled={desabilitado}
+          className={desabilitado ? "desabilitado" : ""}
           placeholder="email"
           onChange={handleForm}
           type="email"
@@ -44,17 +59,25 @@ export default function Login({}) {
         />
         <input
           data-identifier="input-password"
+          disabled={desabilitado}
+          className={desabilitado ? "desabilitado" : ""}
           placeholder="senha"
           onChange={handleForm}
           type="password"
           required
           name="password"
         />
-        <button data-identifier="login-btn" type="submit">
-          Entrar
+        <button
+          data-identifier="login-btn"
+          disabled={desabilitado}
+          type="submit"
+        >
+          {desabilitado ? <Carregando /> : "Entrar"}
         </button>
       </form>
-      <Link data-identifier="sign-up-action" to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+      <Link data-identifier="sign-up-action" to="/cadastro">
+        Não tem uma conta? Cadastre-se!
+      </Link>
     </StyledLogin>
   );
 }

@@ -24,13 +24,14 @@ export default function Cadastro({}) {
         "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",
         form
       )
-
-      .catch(() => {
-        setDesabilitado(false);
-      })
       .then(() => {
 
-        navigate("/habitos")
+        navigate("/")
+      })
+      .catch((e) => {
+        setDesabilitado(false);
+        alert(e.message)
+        console.log(e)
       });
   }
   function handleForm(e) {

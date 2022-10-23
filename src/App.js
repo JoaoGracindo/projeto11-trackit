@@ -5,19 +5,22 @@ import Cadastro from "./components/cadastro/Cadastro";
 import Hoje from "./components/hoje/Hoje";
 import Habitos from "./components/habitos/Habitos";
 import Historico from "./components/historico/Historico";
+import AuthProvider from "./contexts/auth";
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/habitos" element={<Habitos />} />
-          <Route path="/hoje" element={<Hoje />} />
-          <Route path="/historico" element={<Historico />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/habitos" element={<Habitos />} />
+            <Route path="/hoje" element={<Hoje />} />
+            <Route path="/historico" element={<Historico />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
