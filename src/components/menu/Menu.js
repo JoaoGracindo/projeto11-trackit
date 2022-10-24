@@ -1,25 +1,31 @@
 import logo from "./../../assets/logo.svg";
 import StyledMenu from "./StyledMenu";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "./../../contexts/auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Menu({}) {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-  if (user.token === undefined) {
-    navigate("/");
-  }
-  console.log(user.token)
+  const { user, isLogged } = useContext(AuthContext);
+ 
+
+  
+  
+    if(!isLogged){
+      alert("Voce não esta logado")
+    return <Navigate to ="/"/>
+    }
+
 
   return (
     <StyledMenu>
+      
       <div className="header">
         <img className="logo" src={`${logo}`} />
         <img
           data-identifier="avatar"
           className="userImg"
-          src="https://www.rbsdirect.com.br/imagesrc/25516126.jpg?w=700"
+          src={user.image}
         />
       </div>
       <div className="footer">

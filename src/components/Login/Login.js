@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import img1 from "../../assets/img1.svg";
 import StyledLogin from "./StyledLogin";
@@ -15,7 +15,15 @@ export default function Login({}) {
     email: "",
     password: "",
   });
-const {setUser, user} = useContext(AuthContext)
+const {setUser, user, setIsLogged, isLogged} = useContext(AuthContext);
+
+
+
+  useEffect(() => {
+    if(user.token !== undefined){
+    navigate('/habitos')
+    }
+  },[isLogged])
 
 
 
@@ -29,8 +37,10 @@ const {setUser, user} = useContext(AuthContext)
         form
       )
       .then((e) => {
-        setUser(e.data)
-        navigate("/habitos");
+        setUser({...e.data})
+        setIsLogged(true)
+       
+
       })
       .catch((e) => {
         setDesabilitado(false);
