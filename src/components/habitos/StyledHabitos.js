@@ -116,6 +116,17 @@ const StyledHabitos = styled.div`
     color: #666666;
 
   }
+
+  .hidden{
+    display:none;
+  }
+
+  .desabilitado{
+
+background-color: #F2F2F2;
+border: 1px solid #D5D5D5;
+border-radius: 5px;
+}
 `;
 
 export default StyledHabitos;
