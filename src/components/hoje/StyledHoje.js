@@ -11,14 +11,14 @@ const StyledHoje = styled.div`
   .header {
     margin-top: 28px;
     margin-bottom: 28px;
-    margin-left:5%;
+    margin-left: 5%;
 
     h1 {
       font-weight: 400;
       font-size: 22.976px;
       line-height: 29px;
       color: #126ba5;
-      margin-bottom:2px;
+      margin-bottom: 2px;
     }
 
     h2 {
@@ -28,7 +28,6 @@ const StyledHoje = styled.div`
 
       color: #bababa;
     }
-
   }
 
   .habito {
@@ -38,7 +37,7 @@ const StyledHoje = styled.div`
     border-radius: 5px;
     margin: 0 auto;
     position: relative;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 
     h1 {
       font-weight: 400;
@@ -50,10 +49,10 @@ const StyledHoje = styled.div`
       left: 5%;
     }
 
-    div{
-      position:absolute;
-      bottom:17px;
-      left:5%;
+    div {
+      position: absolute;
+      bottom: 17px;
+      left: 5%;
       font-weight: 400;
       font-size: 12.976px;
       line-height: 16px;
@@ -62,7 +61,7 @@ const StyledHoje = styled.div`
     }
 
     ion-icon {
-      font-size:75px;
+      font-size: 75px;
       color: #ebebeb;
       border-radius: 5px;
       position: absolute;
@@ -70,10 +69,9 @@ const StyledHoje = styled.div`
       right: 5%;
     }
 
-  }
-
-  .done{
-    color: #8FC549;
+    .done {
+      color: #8fc549;
+    }
   }
 `;
 

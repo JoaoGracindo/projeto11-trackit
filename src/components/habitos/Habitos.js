@@ -152,7 +152,7 @@ function Habito({ days, name, id, deletarHabito }) {
 
         <ion-icon
           name="trash-outline"
-          onClick={() => deletarHabito(id)}
+          onClick={() => {if(window.confirm("Tem certeza que quer deletar?")){deletarHabito(id)}}}
         ></ion-icon>
       </div>
   );

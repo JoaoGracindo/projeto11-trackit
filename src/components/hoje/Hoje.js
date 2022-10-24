@@ -14,8 +14,6 @@ export default function Hoje({}) {
   const [atualiza, setAtualiza] = useState(false)
   const [habitos, setHabitos] = useState([]);
   const weekday = dayjs().locale("pt-br").format("dddd, MM/DD");
-  console.log(weekday)
-  console.log(habitos);
   const config = {
     headers: {
       Authorization: `Bearer ${user.token}`,
@@ -60,7 +58,7 @@ export default function Hoje({}) {
       <StyledHoje>
         <div className="header">
           <h1>{dayjs().locale('pt').format("dddd, DD/MM")}</h1>
-          {habitos.filter((h) => h.done)}
+          
           <h2>Nenhum hábito concluido ainda</h2>
         </div>
         <div>
@@ -90,6 +88,7 @@ function Habito({
       </div>
       <ion-icon
         data-identifier="done-habit-btn"
+        name="checkbox"
         onClick={() => handleCheck(id, done)}
       ></ion-icon>
     </div>

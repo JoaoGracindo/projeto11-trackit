@@ -57,13 +57,8 @@ export default function Menu({}) {
         >
           Hábitos
         </span>
-        <CircularProgressbarWithChildren
-          value={porcentagem}
-          className="circular"
-          strokeWidth
-        >
+
           <div onClick={() => navigate("/hoje")}>hoje</div>
-        </CircularProgressbarWithChildren>
 
         <span
           data-identifier="historic-page-action"
@@ -74,8 +69,4 @@ export default function Menu({}) {
       </div>
     </StyledMenu>
   );
-}
-
-function Circular({ children }) {
-  return <div></div>;
 }
