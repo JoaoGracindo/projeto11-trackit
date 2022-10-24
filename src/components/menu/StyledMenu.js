@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledMenu = styled.div`
-
   img {
     height: 50px;
     width: 50px;
@@ -32,6 +31,7 @@ const StyledMenu = styled.div`
       font-weight: 400;
       font-size: 17.976px;
       line-height: 22px;
+      z-index:2;
     }
   }
 
@@ -66,6 +66,12 @@ const StyledMenu = styled.div`
     font-size: 17.976px;
     line-height: 22px;
     margin: 0 10%;
+  }
+
+  .circular {
+    display:flex;
+    justify-content:center;
+    align-items:center;
   }
 `;
 

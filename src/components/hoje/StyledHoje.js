@@ -38,6 +38,7 @@ const StyledHoje = styled.div`
     border-radius: 5px;
     margin: 0 auto;
     position: relative;
+    margin-bottom:10px;
 
     h1 {
       font-weight: 400;
@@ -69,6 +70,10 @@ const StyledHoje = styled.div`
       right: 5%;
     }
 
+  }
+
+  .done{
+    color: #8FC549;
   }
 `;
 

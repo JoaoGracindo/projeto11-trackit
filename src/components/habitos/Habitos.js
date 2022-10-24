@@ -6,11 +6,14 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
+const dias = ["D", "S", "T", "Q", "Q", "S", "S"];
+
 export default function Habitos({}) {
   const [body, setBody] = useState({ name: "", days: [] });
   const [habitos, setHabitos] = useState([]);
+  const [atualiza, setAtualiza] = useState(true)
   const [desabilitado, setDesabilitado] = useState(false);
-  const dias = ["D", "S", "T", "Q", "Q", "S", "S"];
   const [creating, setCreating] = useState(false);
   const { user } = useContext(AuthContext);
   const config = {
@@ -18,10 +21,7 @@ export default function Habitos({}) {
       authorization: `Bearer ${user.token}`,
     },
   };
-
-
-
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -33,17 +33,21 @@ export default function Habitos({}) {
         console.log(response);
         setHabitos([...response.data]);
       });
-  }, [desabilitado]);
+  }, [atualiza]);
 
+  function deletarHabito(id) {
+   
+      axios.delete(
+        `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,
+        config
+      )
+      .then(() => setAtualiza(!atualiza));
+    }
+   
 
-
-  function deletarHabito(id){
-    axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,
-                  config)
-  }
 
   function enviarHabito() {
-    setDesabilitado(true)
+    setDesabilitado(true);
     axios
       .post(
         "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
@@ -53,7 +57,9 @@ export default function Habitos({}) {
       .catch((e) => {
         console.log(e);
       })
-      .then(() => setCreating(false));
+      .then(() => {
+        setCreating(false);
+      setDesabilitado(false)});
   }
 
   function handleInput(e) {
@@ -121,16 +127,35 @@ export default function Habitos({}) {
               </button>
             </div>
           </div>
-                {habitos.length === 0 ? 
-          <div data-identifier="no-habit-message" className="aviso">
-            Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
-            começar a trackear!
-          </div> :
-          habitos.map((habito, key) => {
-
-          })
+          {habitos.length === 0 ? (
+            <div data-identifier="no-habit-message" className="aviso">
+              Você não tem nenhum hábito cadastrado ainda. Adicione um hábito
+              para começar a trackear!
+            </div>
+          ) : <div className="habitosContainer"> {habitos.map((habito) => <Habito deletarHabito={deletarHabito} {...habito}/>)}</div>}
+            
         </div>
       </StyledHabitos>
     </>
   );
 }
+
+
+function Habito({ days, name, id, deletarHabito }) {
+  console.log(days);
+  return (
+      <div className="habito">
+        <span>{name}</span>
+        <div>
+          {dias.map((dia, key) =>  <div className={days.includes(key) ? "selected" : ""} key={key}>{dia}</div>)}
+        </div>
+
+        <ion-icon
+          name="trash-outline"
+          onClick={() => deletarHabito(id)}
+        ></ion-icon>
+      </div>
+  );
+}
+
+
